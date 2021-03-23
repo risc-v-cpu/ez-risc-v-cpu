@@ -47,8 +47,8 @@ assign debug_x3 = register_x[3];
 assign debug_x4 = register_x[4];
 assign debug_x5 = register_x[5];
 
-assign operand_1_read_data = register_x[operand_1_read_index];
-assign operand_2_read_data = register_x[operand_2_read_index];
+assign rs1_read_data = register_x[rs1_read_index];
+assign rs2_read_data = register_x[rs2_read_index];
 
 // PC register
 assign pc_read_data = register_pc;
@@ -69,7 +69,7 @@ always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
         register_x[0] <= 32'h0;
     end else begin
-        if (operand_3_write_enable) begin
+        if (rd_write_enable) begin
             if (rd_write_index == 0) begin
                 // pass
             end else begin

@@ -24,6 +24,7 @@ output [31: 0] rv32_u_imm,
 output [31: 0] rv32_uj_imm,
 output [31: 0] rv32_b_imm
 );
+wire [31:0] rv32_instruction = instruction[31:0];
 
 // I-type
 assign rv32_i_imm_11_0 = rv32_instruction[31:20];

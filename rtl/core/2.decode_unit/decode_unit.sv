@@ -1,5 +1,5 @@
 /*
-name: RV32I Decoder opcode_decode
+name: RV32I Decoder decode_unit
 summary: decode opcode and rv32 type
 author: cw1997 [867597730@qq.com]
 repo: https://github.com/risc-v-cpu/ez-risc-v-cpu
@@ -8,7 +8,7 @@ datetime: 2021-03-20 22:06:33
 Refer to riscv-spec-v2.2.pdf (page 104)
 Chapter 19 RV32/64G Instruction Set Listings
 */
-module opcode_decode (
+module decode_unit (
 // instruction_fetch
 input  [31: 0] instruction,
 
@@ -163,4 +163,4 @@ operand_register_decode operand_register_decode_inst (
     .rv32_rs2_data ( rv32_rs2_data )
 );
 
-endmodule // opcode_decode
+endmodule // decode_unit

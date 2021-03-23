@@ -71,7 +71,7 @@ output         rv32_i,
 output         rv32_s,
 output         rv32_u,
 output         rv32_j,
-output         rv32_b,
+output         rv32_b
 );
 
 wire [31: 0] rv32_instruction = instruction;
@@ -80,6 +80,7 @@ wire [ 6: 0] rv32_opcode = rv32_instruction[ 6: 0];
 wire [ 2: 0] rv32_funct3 = rv32_instruction[14:12];
 wire [ 6: 0] rv32_funct7 = rv32_instruction[31:25];
 
+wire         rv32_rd = rv32_instruction[11: 7];
 wire         rv32_rd_00000 = (rv32_rd == 5'b00000);
 
 // rv_opcode_bit_width
