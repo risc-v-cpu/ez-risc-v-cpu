@@ -28,6 +28,7 @@ input          pc_write_enable,
 // debug
 output [31: 0] debug_x0,
 output [31: 0] debug_x1,
+output [31: 0] debug_x2,
 output [31: 0] debug_x3,
 output [31: 0] debug_x4,
 output [31: 0] debug_x5,
@@ -43,6 +44,7 @@ reg [31:0] register_pc;
 // debug
 assign debug_x0 = register_x[0];
 assign debug_x1 = register_x[1];
+assign debug_x2 = register_x[2];
 assign debug_x3 = register_x[3];
 assign debug_x4 = register_x[4];
 assign debug_x5 = register_x[5];
@@ -67,7 +69,40 @@ end
 // destination register
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-        register_x[0] <= 32'h0;
+        register_x <= {
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0,
+            32'h0
+        };
     end else begin
         if (rd_write_enable) begin
             if (rd_write_index == 0) begin

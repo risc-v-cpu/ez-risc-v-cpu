@@ -8,6 +8,8 @@ datetime: 2021-03-20 18:09:57
 Refer to riscv-spec-v2.2.pdf (page 104)
 Chapter 19 RV32/64G Instruction Set Listings
 */
+`include "C:/my/GitHub/risc-v-cpu/ez-risc-v-cpu/rtl/defines.sv"
+
 module fetch_unit (
 output [`X_LENGTH-1: 0] instruction,
 input  [`X_LENGTH-1: 0] pc,

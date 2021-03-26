@@ -69,11 +69,11 @@ output         rv32_u,
 output         rv32_j,
 
 // rv32 immediate extend
-output [31: 0] rv32_i_imm,
-output [31: 0] rv32_b_imm,
-output [31: 0] rv32_s_imm,
-output [31: 0] rv32_u_imm,
-output [31: 0] rv32_uj_imm,
+output signed [31: 0] rv32_i_imm,
+output signed [31: 0] rv32_b_imm,
+output signed [31: 0] rv32_s_imm,
+output signed [31: 0] rv32_u_imm,
+output signed [31: 0] rv32_uj_imm,
 
 // from resiger_file
 output [ 4: 0] rs1_read_index,
@@ -81,7 +81,7 @@ input  [31: 0] rs1_read_data,
 output [ 4: 0] rs2_read_index,
 input  [31: 0] rs2_read_data,
 // register operand
-output [31: 0] rv32_rd_data,
+output [31: 0] rv32_rd_index,
 output [31: 0] rv32_rs1_data,
 output [31: 0] rv32_rs2_data
 );
@@ -137,10 +137,10 @@ opcode_decode opcode_decode_inst (
     .rv32_i_fence_i ( rv32_i_fence_i ),
     .rv32_r ( rv32_r ),
     .rv32_i ( rv32_i ),
+    .rv32_b ( rv32_b ),
     .rv32_s ( rv32_s ),
     .rv32_u ( rv32_u ),
-    .rv32_j ( rv32_j ),
-    .rv32_b ( rv32_b ),
+    .rv32_j ( rv32_j )
 );
 
 operand_immediate_decode operand_immediate_decode_inst (
@@ -149,7 +149,7 @@ operand_immediate_decode operand_immediate_decode_inst (
     .rv32_s_imm ( rv32_s_imm ),
     .rv32_u_imm ( rv32_u_imm ),
     .rv32_uj_imm ( rv32_uj_imm ),
-    .rv32_b_imm ( rv32_b_imm ),
+    .rv32_b_imm ( rv32_b_imm )
 );
 
 operand_register_decode operand_register_decode_inst (
@@ -158,7 +158,7 @@ operand_register_decode operand_register_decode_inst (
     .rs1_read_data ( rs1_read_data ),
     .rs2_read_index ( rs2_read_index ),
     .rs2_read_data ( rs2_read_data ),
-    .rv32_rd_data ( rv32_rd_data ),
+    .rv32_rd_index ( rv32_rd_index ),
     .rv32_rs1_data ( rv32_rs1_data ),
     .rv32_rs2_data ( rv32_rs2_data )
 );

@@ -1,4 +1,4 @@
-`include "D:/ee/fpga/de2/project/risc-v-cpu/rtl/defines.v"
+`include "C:/my/GitHub/risc-v-cpu/ez-risc-v-cpu/rtl/defines.sv"
 
 module memory_access_tb ();
 

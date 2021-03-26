@@ -8,7 +8,8 @@ datetime: 2021-03-22 19:17:52
 Refer to riscv-spec-v2.2.pdf (page 104)
 Chapter 19 RV32/64G Instruction Set Listings
 */
-`include "../../defines.sv"
+`include "C:/my/GitHub/risc-v-cpu/ez-risc-v-cpu/rtl/defines.sv"
+//`include "../../defines.sv"
 module branch_unit (
 
 input  rv32_j_jal,
@@ -22,18 +23,19 @@ input  rv32_b_bgeu,
 
 input  rv32_b,
 
-input  [31: 0] operand_1,
-input  [31: 0] operand_2,
-input  [31: 0] operand_3,
+input  signed [31: 0] operand_1,
+input  signed [31: 0] operand_2,
+input  signed [31: 0] operand_3,
 
-input  [31: 0] pc,
-output [31: 0] pc_next
+input  signed [31: 0] pc,
+output signed [31: 0] pc_next
 );
 
-wire pc_target = rv32_j_jal ? (pc + operand_1) : (
-    rv32_i_jalr ? ((operand_1 + operand_2) & (~32'b1)) : 
-    operand_3
-);
+wire [31: 0] pc_target = 
+rv32_j_jal ? (pc + operand_1) : 
+rv32_i_jalr ? ((operand_1 + operand_2) & (~32'b1)) : 
+pc + operand_3
+;
 
 wire compare_result;
 wire compare_with_signed = rv32_b_beq | rv32_b_bne | rv32_b_blt | rv32_b_bge;

@@ -1,4 +1,4 @@
-`include "./defines.sv"
+`include "C:/my/GitHub/risc-v-cpu/ez-risc-v-cpu/rtl/defines.sv"
 module risc_v_cpu_top (
     
 // peripheral

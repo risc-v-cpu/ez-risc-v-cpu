@@ -1,5 +1,6 @@
-`include "D:/ee/fpga/de2/project/risc-v-cpu/rtl/defines.v"
+`include "C:/my/GitHub/risc-v-cpu/ez-risc-v-cpu/rtl/defines.sv"
 
+module branch_unit_tb ();
 
 reg         rv32_s_sb;
 reg         rv32_s_sh;

@@ -17,18 +17,15 @@ input  [31: 0] rs1_read_data,
 output [ 4: 0] rs2_read_index,
 input  [31: 0] rs2_read_data,
 // operand
-output [31: 0] rv32_rd_data,
+output [31: 0] rv32_rd_index,
 output [31: 0] rv32_rs1_data,
 output [31: 0] rv32_rs2_data
 );
 
-wire rv32_rd_index  = instruction[11: 7];
-wire rv32_rs1_index = instruction[19:15];
-wire rv32_rs2_index = instruction[24:20];
+assign rs1_read_index = instruction[19:15];
+assign rs2_read_index = instruction[24:20];
 
-assign rs1_read_index = rv32_rs1_index;
-assign rs2_read_index = rv32_rs2_index;
-
+assign rv32_rd_index  = instruction[11: 7];
 assign rv32_rs1_data = rs1_read_data;
 assign rv32_rs2_data = rs2_read_data;
 

@@ -1,4 +1,4 @@
-`include "../../defines.sv"
+`include "C:/my/GitHub/risc-v-cpu/ez-risc-v-cpu/rtl/defines.sv"
 
 module memory_controller (
 
@@ -29,6 +29,14 @@ assign memory_read_data = memory[memory_read_address];
 
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
+        memory[0] <= 0;
+        memory[1] <= 0;
+        memory[2] <= 0;
+        memory[3] <= 0;
+        memory[4] <= 0;
+        memory[5] <= 0;
+        memory[6] <= 0;
+        memory[7] <= 0;
 //        genvar i;
 //        generate
 //        for (i=0; i<(`MEMORY_COUNT); i=i+1) begin: clr_mem

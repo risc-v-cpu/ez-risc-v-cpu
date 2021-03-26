@@ -1,4 +1,4 @@
-`include "../defines.sv"
+`include "C:/my/GitHub/risc-v-cpu/ez-risc-v-cpu/rtl/defines.sv"
 
 module risc_v_cpu (
     
@@ -108,11 +108,14 @@ wire         rv32_b;
 wire         rv32_s;
 wire         rv32_u;
 wire         rv32_j;
-wire [31: 0] rv32_i_imm;
-wire [31: 0] rv32_b_imm;
-wire [31: 0] rv32_s_imm;
-wire [31: 0] rv32_u_imm;
-wire [31: 0] rv32_uj_imm;
+wire signed [31: 0] rv32_i_imm;
+wire signed [31: 0] rv32_b_imm;
+wire signed [31: 0] rv32_s_imm;
+wire signed [31: 0] rv32_u_imm;
+wire signed [31: 0] rv32_uj_imm;
+wire signed [31: 0] rv32_rd_index;
+wire signed [31: 0] rv32_rs1_data;
+wire signed [31: 0] rv32_rs2_data;
 decode_unit decode_unit_inst (
     .instruction ( instruction ),
 
@@ -167,6 +170,8 @@ decode_unit decode_unit_inst (
     .rv32_i ( rv32_i ),
     .rv32_b ( rv32_b ),
     .rv32_s ( rv32_s ),
+    .rv32_u ( rv32_u ),
+    .rv32_j ( rv32_j ),
     .rv32_i_imm ( rv32_i_imm ),
     .rv32_b_imm ( rv32_b_imm ),
     .rv32_s_imm ( rv32_s_imm ),
@@ -176,13 +181,13 @@ decode_unit decode_unit_inst (
     .rs1_read_data ( rs1_read_data ),
     .rs2_read_index ( rs2_read_index ),
     .rs2_read_data ( rs2_read_data ),
-    .rv32_rd_data ( rv32_rd_data ),
+    .rv32_rd_index ( rv32_rd_index ),
     .rv32_rs1_data ( rv32_rs1_data ),
     .rv32_rs2_data ( rv32_rs2_data )
 );
 
 wire [ 4: 0] rd_index;
-wire [31: 0] result;
+wire signed [31: 0] result;
 wire [31: 0] pc_next;
 wire need_write_rd;
 execute_unit execute_unit_inst (
@@ -235,16 +240,16 @@ execute_unit execute_unit_inst (
     .rv32_i_fence_i ( rv32_i_fence_i ),
     .rv32_r ( rv32_r ),
     .rv32_i ( rv32_i ),
+    .rv32_b ( rv32_b ),
     .rv32_s ( rv32_s ),
     .rv32_u ( rv32_u ),
     .rv32_j ( rv32_j ),
-    .rv32_b ( rv32_b ),
     .rv32_i_imm ( rv32_i_imm ),
     .rv32_s_imm ( rv32_s_imm ),
     .rv32_u_imm ( rv32_u_imm ),
     .rv32_uj_imm ( rv32_uj_imm ),
     .rv32_b_imm ( rv32_b_imm ),
-    .rv32_rd_data ( rv32_rd_data ),
+    .rv32_rd_index ( rv32_rd_index ),
     .rv32_rs1_data ( rv32_rs1_data ),
     .rv32_rs2_data ( rv32_rs2_data ),
     

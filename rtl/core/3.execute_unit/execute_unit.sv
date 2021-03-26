@@ -8,6 +8,8 @@ datetime: 2021-03-20 23:03:50
 Refer to riscv-spec-v2.2.pdf (page 104)
 Chapter 19 RV32/64G Instruction Set Listings
 */
+`include "C:/my/GitHub/risc-v-cpu/ez-risc-v-cpu/rtl/defines.sv"
+
 module execute_unit (
 // from decode_unit
 input  rv32_r_add,
@@ -69,19 +71,19 @@ input  rv32_i_fence_i,
 // rv32 type
 input rv32_r,
 input rv32_i,
+input rv32_b,
 input rv32_s,
 input rv32_u,
 input rv32_j,
-input rv32_b,
 
 // rv32 immediate extend
-output signed [31: 0] rv32_i_imm,
-output signed [31: 0] rv32_s_imm,
-output signed [31: 0] rv32_u_imm,
-output signed [31: 0] rv32_uj_imm,
-output signed [31: 0] rv32_b_imm,
+input  signed [31: 0] rv32_i_imm,
+input  signed [31: 0] rv32_s_imm,
+input  signed [31: 0] rv32_u_imm,
+input  signed [31: 0] rv32_uj_imm,
+input  signed [31: 0] rv32_b_imm,
 // register operand
-input  signed [31: 0] rv32_rd_data,
+input  signed [31: 0] rv32_rd_index,
 input  signed [31: 0] rv32_rs1_data,
 input  signed [31: 0] rv32_rs2_data,
 
@@ -101,19 +103,22 @@ output [`MEMORY_WIDTH-1: 0] memory_write_data,
 output                      memory_write_enable
 );
 
-wire signed [31: 0] operand_1 = (rv32_r | rv32_i | rv32_s | rv32_b) ? rv32_rs1_data : 
+wire signed [31: 0] operand_1 = 
+(rv32_r || rv32_i || rv32_s || rv32_b) ? rv32_rs1_data : 
 rv32_u ? rv32_u_imm : 
 rv32_j ? rv32_uj_imm : 
-0;
-wire signed [31: 0] operand_2 = (rv32_r | rv32_s | rv32_b) ? rv32_rs2_data : 
+32'b0;
+wire signed [31: 0] operand_2 = 
+(rv32_r || rv32_s || rv32_b) ? rv32_rs2_data : 
 rv32_i ? rv32_i_imm :
 rv32_u ? rv32_u_imm :
 rv32_j ? rv32_uj_imm :
-0;
-wire signed [31: 0] operand_3 = (rv32_r | rv32_i | rv32_u | rv32_j) ? rv32_rd_data : 
+32'b0;
+wire signed [31: 0] operand_3 = 
+(rv32_r || rv32_i || rv32_u || rv32_j) ? rv32_rd_index : 
 rv32_s ? rv32_s_imm :
 rv32_b ? rv32_b_imm :
-0;
+32'b0;
 
 assign rd_index = operand_3[4:0];
 

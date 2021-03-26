@@ -68,10 +68,10 @@ output         rv32_i_fence_i,
 // rv32 type
 output         rv32_r,
 output         rv32_i,
+output         rv32_b,
 output         rv32_s,
 output         rv32_u,
-output         rv32_j,
-output         rv32_b
+output         rv32_j
 );
 
 wire [31: 0] rv32_instruction = instruction;
@@ -255,55 +255,4 @@ assign rv32_i_fence_i = ( rv32_opcode_6_2_00011 && rv32_funct3_001 && rv32_rd_00
 // wire [3:0] rv32_i_fence_predecessor = (rv32_i_imm_27_24_xxxx);
 // wire [3:0] rv32_i_fence_successor   = (rv32_i_imm_23_20_xxxx);
 
-
-// assign decode_info = {
-//     rv32_r_add,
-//     rv32_r_sub,
-//     rv32_r_sll,
-//     rv32_r_slt,
-//     rv32_r_sltu,
-//     rv32_r_xor,
-//     rv32_r_or,
-//     rv32_r_and,
-//     rv32_r_srl,
-//     rv32_r_sra,
-//     rv32_i_addi,
-//     rv32_i_slti,
-//     rv32_i_sltiu,
-//     rv32_i_xori,
-//     rv32_i_ori,
-//     rv32_i_andi,
-//     rv32_i_slli,
-//     rv32_i_srli,
-//     rv32_i_srai,
-//     rv32_b_beq,
-//     rv32_b_bne,
-//     rv32_b_blt,
-//     rv32_b_bge,
-//     rv32_b_bltu,
-//     rv32_b_bgeu,
-//     rv32_j_jal,
-//     rv32_i_jalr,
-//     rv32_u_lui,
-//     rv32_u_auipc,
-//     rv32_s_sb,
-//     rv32_s_sh,
-//     rv32_s_sw,
-//     rv32_i_lb,
-//     rv32_i_lh,
-//     rv32_i_lw,
-//     rv32_i_lbu,
-//     rv32_i_lhu,
-//     rv32_i_ecall,
-//     rv32_i_ebreak,
-//     rv32_i_csrrw,
-//     rv32_i_csrrs,
-//     rv32_i_csrrc,
-//     rv32_i_csrrwi,
-//     rv32_i_csrrsi,
-//     rv32_i_csrrci,
-//     rv32_i_fence,
-//     rv32_i_fence_i,
-// }
-
-endmodule // instruction_decode
+endmodule // opcode_decode

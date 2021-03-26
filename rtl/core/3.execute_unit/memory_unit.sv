@@ -8,7 +8,8 @@ datetime: 2021-03-22 18:43:38
 Refer to riscv-spec-v2.2.pdf (page 104)
 Chapter 19 RV32/64G Instruction Set Listings
 */
-`include "../../defines.sv"
+`include "C:/my/GitHub/risc-v-cpu/ez-risc-v-cpu/rtl/defines.sv"
+
 module memory_unit (
 // from decode_unit
 input          rv32_s_sb,
