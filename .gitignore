@@ -51,6 +51,9 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-/prject/quartus_ii/db
-/prject/quartus_ii/incremental_db
-/prject/quartus_ii/greybox_tmp
+# quartus ii
+prject/quartus_ii/db/
+prject/quartus_ii/incremental_db/
+prject/quartus_ii/greybox_tmp/
+
+# 
