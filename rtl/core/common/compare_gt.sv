@@ -3,42 +3,45 @@ module compare_gt #(
 ) (
     input [WIDTH-1:0] data1,
     input [WIDTH-1:0] data2,
-    input is_equal,
     input is_signed,
     
     output reg result
 );
 
+wire data1_sign = data1[WIDTH-1];
+wire data2_sign = data2[WIDTH-1];
+
+wire [WIDTH-1-1:0] data1_without_sign = data1[WIDTH-1-1:0];
+wire [WIDTH-1-1:0] data2_without_sign = data2[WIDTH-1-1:0];
+
+wire is_gather_than_without_sign = data1_without_sign > data2_without_sign;
+wire is_gather_than_with_sign = (data1_sign > data1_sign) & is_gather_than_without_sign;
+
 always @(*) begin
-    if (is_signed == 1'b1) begin
-        if (data1[WIDTH-1] == 1'b1 && data2[WIDTH-1] == 1'b0) begin
-            result <= 1'b0;
-        end else if (data1[WIDTH-1] == 1'b0 && data2[WIDTH-1] == 1'b1) begin
-            result <= 1'b1;
-        end else if (data1[WIDTH-1] == 1'b1 && data2[WIDTH-1] == 1'b1) begin
-            if (is_equal) begin
-                result <= data1 <= data2 ? 1'b1 : 1'b0; 
-            end else begin
-                result <= data1 < data2 ? 1'b1 : 1'b0; 
-            end
-        end else if (data1[WIDTH-1] == 1'b0 && data2[WIDTH-1] == 1'b0) begin
-            if (is_equal) begin
-                result <= data1 >= data2 ? 1'b1 : 1'b0; 
-            end else begin
-                result <= data1 > data2 ? 1'b1 : 1'b0; 
-            end
-        end else begin
-            result <= 1'bz; 
-        end 
-    end else if (is_signed == 1'b0)  begin
-        if (is_equal) begin
-            result <= data1 >= data2 ? 1'b1 : 1'b0; 
-        end else begin
-            result <= data1 > data2 ? 1'b1 : 1'b0; 
+    case (is_signed)
+        1'b1 : begin
+            case ({data1_sign, data2_sign})
+                2'b10 : begin
+                    result <= 1'b0;
+                end
+                2'b01 : begin
+                    result <= 1'b1;
+                end
+                2'b11, 2'b00 : begin
+                    result <= is_gather_than_without_sign;
+                end
+                default: begin
+                    result <= 1'bz;
+                end
+            endcase
         end
-    end else begin
-        result <= 1'bz;
-    end
+        1'b0 : begin
+            result <= is_gather_than_with_sign;
+        end
+        default : begin
+            result <= 1'bz;
+        end
+    endcase
 end
 
 endmodule // compare_gt

@@ -40,8 +40,8 @@ pc + operand_3
 wire compare_result;
 wire compare_with_signed = rv32_b_beq | rv32_b_bne | rv32_b_blt | rv32_b_bge;
 
-wire data1 = rv32_b_blt ? operand_2 : operand_1;
-wire data2 = rv32_b_bge ? operand_1 : operand_2;
+wire data1 = (rv32_b_blt | rv32_b_bltu) ? operand_2 : operand_1;
+wire data2 = (rv32_b_bge | rv32_b_bgeu) ? operand_1 : operand_2;
 compare_gt compare_gt_inst (
     .data1 ( data1 ),
     .data2 ( data2 ),
@@ -50,12 +50,13 @@ compare_gt compare_gt_inst (
 );
 
 wire branch_condition = 
-(rv32_j_jal) || 
-(rv32_i_jalr) || 
-(rv32_b_beq && operand_1 == operand_2) || 
-(rv32_b_bne && operand_1 != operand_2) || 
-((rv32_b_blt | rv32_b_bge | rv32_b_bltu | rv32_b_bgeu) && compare_result)
-;
+(rv32_j_jal) |
+(rv32_i_jalr) |
+(rv32_b_beq & operand_1 == operand_2) |
+(rv32_b_bne & operand_1 != operand_2) |
+((rv32_b_blt | rv32_b_bltu) && compare_result) |
+((rv32_b_bge | rv32_b_bgeu) && (compare_result | (data1 == data2))) |
+0;
 
 assign pc_next = branch_condition ? pc_target : (pc + 32'h4);
 

@@ -69,40 +69,72 @@ end
 // destination register
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-        register_x <= {
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0,
-            32'h0
-        };
+    register_x[ 0] <= 32'h0;
+    register_x[ 1] <= 32'h0;
+    register_x[ 2] <= 32'h0;
+    register_x[ 3] <= 32'h0;
+    register_x[ 4] <= 32'h0;
+    register_x[ 5] <= 32'h0;
+    register_x[ 6] <= 32'h0;
+    register_x[ 7] <= 32'h0;
+    register_x[ 8] <= 32'h0;
+    register_x[ 9] <= 32'h0;
+    register_x[10] <= 32'h0;
+    register_x[11] <= 32'h0;
+    register_x[12] <= 32'h0;
+    register_x[13] <= 32'h0;
+    register_x[14] <= 32'h0;
+    register_x[15] <= 32'h0;
+    register_x[16] <= 32'h0;
+    register_x[17] <= 32'h0;
+    register_x[18] <= 32'h0;
+    register_x[19] <= 32'h0;
+    register_x[20] <= 32'h0;
+    register_x[21] <= 32'h0;
+    register_x[22] <= 32'h0;
+    register_x[23] <= 32'h0;
+    register_x[24] <= 32'h0;
+    register_x[25] <= 32'h0;
+    register_x[26] <= 32'h0;
+    register_x[27] <= 32'h0;
+    register_x[28] <= 32'h0;
+    register_x[29] <= 32'h0;
+    register_x[30] <= 32'h0;
+    register_x[31] <= 32'h0;
+        // register_x <= {
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0,
+        //     32'h0
+        // };
     end else begin
         if (rd_write_enable) begin
             if (rd_write_index == 0) begin
