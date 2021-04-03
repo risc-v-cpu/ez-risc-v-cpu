@@ -16,19 +16,19 @@ input           clk,
 input           rst_n
 );
 
-wire [ 4: 0] rs1_read_index;
-wire [31: 0] rs1_read_data;
+wire [`REGISTER_WIDTH-1: 0] rs1_read_index;
+wire [`X_LENGTH-1: 0] rs1_read_data;
 
-wire [ 4: 0] rs2_read_index;
-wire [31: 0] rs2_read_data;
+wire [`REGISTER_WIDTH-1: 0] rs2_read_index;
+wire [`X_LENGTH-1: 0] rs2_read_data;
 
-wire [ 4: 0] rd_write_index;
-wire [31: 0] rd_write_data;
-wire         rd_write_enable;
+wire [`REGISTER_WIDTH-1: 0] rd_write_index;
+wire [`X_LENGTH-1: 0] rd_write_data;
+wire rd_write_enable;
 
-wire [31: 0] pc_read_data;
-wire [31: 0] pc_write_data;
-wire         pc_write_enable;
+wire [`X_LENGTH-1: 0] pc_read_data;
+wire [`X_LENGTH-1: 0] pc_write_data;
+wire pc_write_enable;
 
 general_register general_register_inst (
     .rs1_read_index ( rs1_read_index ),

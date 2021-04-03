@@ -8,7 +8,9 @@ datetime: 2021-03-22 19:18:34
 Refer to riscv-spec-v2.2.pdf (page 104)
 Chapter 19 RV32/64G Instruction Set Listings
 */
-module alu(
+`include "C:/my/GitHub/risc-v-cpu/ez-risc-v-cpu/rtl/defines.sv"
+
+module alu (
 input operation_add,
 input operation_subtract,
 input operation_and,
@@ -18,12 +20,12 @@ input operation_shift_left_logical,
 input operation_shift_right_arithmetic,
 input operation_shift_right_logical,
 
-input  signed [31: 0] operand_1,
-input  signed [31: 0] operand_2,
-output signed [31: 0] reuslt
+input  signed [`X_LENGTH-1: 0] operand_1,
+input  signed [`X_LENGTH-1: 0] operand_2,
+output signed [`X_LENGTH-1: 0] result
 );
 
-assign reuslt = operation_add ? (
+assign result = operation_add ? (
 operand_1 + operand_2
 ) : operation_subtract ? (
 operand_1 - operand_2
@@ -49,4 +51,4 @@ operand_1 >>> operand_2
 operand_1 >> operand_2
 ) : 0;
 
-endmodule
+endmodule // alu

@@ -80,18 +80,18 @@ reg rv32_j = 0;
 reg rv32_b = 0;
 
 // rv32 immediate extend
-reg [31: 0] rv32_i_imm = 32;
-reg [31: 0] rv32_s_imm = 32;
-reg [31: 0] rv32_u_imm = 32;
-reg [31: 0] rv32_uj_imm = 32;
-reg [31: 0] rv32_b_imm = 32;
+reg [`X_LENGTH-1: 0] rv32_i_imm = 32;
+reg [`X_LENGTH-1: 0] rv32_s_imm = 32;
+reg [`X_LENGTH-1: 0] rv32_u_imm = 32;
+reg [`X_LENGTH-1: 0] rv32_uj_imm = 32;
+reg [`X_LENGTH-1: 0] rv32_b_imm = 32;
 
 // register operand
-reg [31: 0] rv32_rd_data = 0;
-reg [31: 0] rv32_rs1_data = 0;
-reg [31: 0] rv32_rs2_data = 0;
+reg [`X_LENGTH-1: 0] rv32_rd_data = 0;
+reg [`X_LENGTH-1: 0] rv32_rs1_data = 0;
+reg [`X_LENGTH-1: 0] rv32_rs2_data = 0;
 
-reg [31: 0] pc_read_data = 0;
+reg [`X_LENGTH-1: 0] pc_read_data = 0;
 // memory controller bus
 reg [`MEMORY_WIDTH-1: 0] memory_read_data = 0;
 

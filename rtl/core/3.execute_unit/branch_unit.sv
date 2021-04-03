@@ -23,15 +23,15 @@ input  rv32_b_bgeu,
 
 input  rv32_b,
 
-input  signed [31: 0] operand_1,
-input  signed [31: 0] operand_2,
-input  signed [31: 0] operand_3,
+input  signed [`X_LENGTH-1: 0] operand_1,
+input  signed [`X_LENGTH-1: 0] operand_2,
+input  signed [`X_LENGTH-1: 0] operand_3,
 
-input  signed [31: 0] pc,
-output signed [31: 0] pc_next
+input  signed [`X_LENGTH-1: 0] pc,
+output signed [`X_LENGTH-1: 0] pc_next
 );
 
-wire [31: 0] pc_target = 
+wire [`X_LENGTH-1: 0] pc_target = 
 rv32_j_jal ? (pc + operand_1) : 
 rv32_i_jalr ? ((operand_1 + operand_2) & (~32'b1)) : 
 pc + operand_3

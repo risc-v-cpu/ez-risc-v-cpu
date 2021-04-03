@@ -20,7 +20,7 @@ input clk
 // input rst_n
 );
 
-wire [31: 0] pc_shift_right_3 = (pc >>> 2);
+wire [`X_LENGTH-1: 0] pc_shift_right_3 = (pc >>> 2);
 assign address = pc_shift_right_3[4:0];
 
 program_rom	program_rom_inst (

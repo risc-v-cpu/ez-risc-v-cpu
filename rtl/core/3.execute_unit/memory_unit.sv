@@ -25,9 +25,9 @@ input          rv32_i_lhu,
 input  rv32_s,
 output is_rv_store_and_load,
 // operand
-input  signed [31: 0] operand_1,
-input  signed [31: 0] operand_2,
-input  signed [31: 0] operand_3,
+input  signed [`X_LENGTH-1: 0] operand_1,
+input  signed [`X_LENGTH-1: 0] operand_2,
+input  signed [`X_LENGTH-1: 0] operand_3,
 // memory controller bus
 output [`MEMORY_DEPTH-1: 0] memory_read_address,
 input  [`MEMORY_WIDTH-1: 0] memory_read_data,

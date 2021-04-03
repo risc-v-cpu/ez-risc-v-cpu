@@ -77,22 +77,22 @@ input rv32_u,
 input rv32_j,
 
 // rv32 immediate extend
-input  signed [31: 0] rv32_i_imm,
-input  signed [31: 0] rv32_s_imm,
-input  signed [31: 0] rv32_u_imm,
-input  signed [31: 0] rv32_uj_imm,
-input  signed [31: 0] rv32_b_imm,
+input  signed [`X_LENGTH-1: 0] rv32_i_imm,
+input  signed [`X_LENGTH-1: 0] rv32_s_imm,
+input  signed [`X_LENGTH-1: 0] rv32_u_imm,
+input  signed [`X_LENGTH-1: 0] rv32_uj_imm,
+input  signed [`X_LENGTH-1: 0] rv32_b_imm,
 // register operand
-input  signed [31: 0] rv32_rd_index,
-input  signed [31: 0] rv32_rs1_data,
-input  signed [31: 0] rv32_rs2_data,
+input  signed [`X_LENGTH-1: 0] rv32_rd_index,
+input  signed [`X_LENGTH-1: 0] rv32_rs1_data,
+input  signed [`X_LENGTH-1: 0] rv32_rs2_data,
 
-output        [ 4: 0] rd_index,
-output signed [31: 0] result,
+output        [`REGISTER_WIDTH-1: 0] rd_index,
+output signed [`X_LENGTH-1: 0] result,
 output                need_write_rd,
 
-input  [31: 0] pc_read_data,
-output [31: 0] pc_next,
+input  [`X_LENGTH-1: 0] pc_read_data,
+output [`X_LENGTH-1: 0] pc_next,
 // memory controller bus
 output [`MEMORY_DEPTH-1: 0] memory_read_address,
 input  [`MEMORY_WIDTH-1: 0] memory_read_data,
@@ -103,26 +103,26 @@ output [`MEMORY_WIDTH-1: 0] memory_write_data,
 output                      memory_write_enable
 );
 
-wire signed [31: 0] operand_1 = 
+wire signed [`X_LENGTH-1: 0] operand_1 = 
 (rv32_r || rv32_i || rv32_s || rv32_b) ? rv32_rs1_data : 
 rv32_u ? rv32_u_imm : 
 rv32_j ? rv32_uj_imm : 
 32'b0;
-wire signed [31: 0] operand_2 = 
+wire signed [`X_LENGTH-1: 0] operand_2 = 
 (rv32_r || rv32_s || rv32_b) ? rv32_rs2_data : 
 rv32_i ? rv32_i_imm :
 rv32_u ? rv32_u_imm :
 rv32_j ? rv32_uj_imm :
 32'b0;
-wire signed [31: 0] operand_3 = 
+wire signed [`X_LENGTH-1: 0] operand_3 = 
 (rv32_r || rv32_i || rv32_u || rv32_j) ? rv32_rd_index : 
 rv32_s ? rv32_s_imm :
 rv32_b ? rv32_b_imm :
 32'b0;
 
-assign rd_index = operand_3[4:0];
+assign rd_index = operand_3[`REGISTER_WIDTH-1:0];
 
-wire [31:0] alu_result, memory_access_result;
+wire [`X_LENGTH-1:0] alu_result, memory_access_result;
 wire is_rv_store_and_load;
 
 assign result = (rv32_j_jal | rv32_i_jalr) ? (pc_read_data + 32'h4) : 
@@ -172,7 +172,7 @@ alu alu_inst(
 
     .operand_1 ( operand_1 ),
     .operand_2 ( operand_2 ),
-    .reuslt ( alu_result )
+    .result ( alu_result )
 );
 
 memory_unit memory_unit_inst (
