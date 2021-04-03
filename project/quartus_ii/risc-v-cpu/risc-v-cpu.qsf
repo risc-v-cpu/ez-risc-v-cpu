@@ -500,7 +500,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE ../../../rtl/core/1.fetch_unit/fe
 set_global_assignment -name VERILOG_FILE ../../../rtl/core/risc_v_cpu.sv
 set_global_assignment -name VERILOG_FILE ../../../rtl/risc_v_cpu_top.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../../../rtl/defines.sv
-set_global_assignment -name MIF_FILE ip/program_rom/program_rom.mif
 set_global_assignment -name SDC_FILE "risc-v-cpu.out.sdc"
 set_global_assignment -name QIP_FILE ip/program_rom/program_rom.qip
 set_global_assignment -name SIGNALTAP_FILE stp.stp
