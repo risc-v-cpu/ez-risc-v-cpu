@@ -52,9 +52,9 @@ Mkfile.old
 dkms.conf
 
 # quartus ii
-./prject/quartus_ii/risc-v-cpu/db/
-./prject/quartus_ii/risc-v-cpu/incremental_db/
-./prject/quartus_ii/risc-v-cpu/greybox_tmp/
+./project/quartus_ii/risc-v-cpu/db/
+./project/quartus_ii/risc-v-cpu/incremental_db/
+./project/quartus_ii/risc-v-cpu/greybox_tmp/
 
 # modelsim
-./prject/modelsim/
+./project/modelsim/
